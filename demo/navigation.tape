@@ -11,11 +11,16 @@ Set Height 600
 Set Theme "Catppuccin Mocha"
 Set TypingSpeed 50ms
 
-# Build and pipe data
+# Build and set clean prompt
 Hide
+Type `export PS1="$ "`
+Enter
 Type "go build -o /tmp/tgdash ."
 Enter
 Sleep 3s
+Type "clear"
+Enter
+Sleep 500ms
 Show
 
 Type "cat internal/integration/testdata/multi_unit_apply.txt | /tmp/tgdash"

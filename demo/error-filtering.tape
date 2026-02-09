@@ -10,11 +10,16 @@ Set Height 600
 Set Theme "Catppuccin Mocha"
 Set TypingSpeed 50ms
 
-# Build tgdash
+# Build and set clean prompt
 Hide
+Type `export PS1="$ "`
+Enter
 Type "go build -o /tmp/tgdash ."
 Enter
 Sleep 3s
+Type "clear"
+Enter
+Sleep 500ms
 Show
 
 # Use the fixture with errors
