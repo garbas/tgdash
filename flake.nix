@@ -29,7 +29,11 @@
                 "^blog/"
               ];
             };
-            govet.enable = true;
+            govet = {
+              enable = true;
+              entry = "${pkgs.bash}/bin/bash -c 'GOTOOLCHAIN=local ${pkgs.lib.getExe pkgs.go} vet ./...'";
+              pass_filenames = false;
+            };
             gofmt.enable = true;
             actionlint.enable = true;
             yamllint.enable = true;
