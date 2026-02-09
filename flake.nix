@@ -48,14 +48,37 @@
             };
           };
         };
+        tgdash = pkgs.buildGoModule {
+          pname = "tgdash";
+          version = "0.1.0";
+          src = ./.;
+          vendorHash = "sha256-TZa7C8KbBRZaD921T4sNVaqgHiRwCHDGdeaG7O9qeLg=";
+
+          meta = {
+            description = "Terminal dashboard for Terragrunt";
+            homepage = "https://github.com/rok/tgdash";
+            license = pkgs.lib.licenses.mit;
+            mainProgram = "tgdash";
+          };
+        };
       in
       {
+        checks = {
+          pre-commit = pre-commit-check;
+        };
+
+        packages = {
+          default = tgdash;
+          tgdash = tgdash;
+        };
+
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             go
+            goreleaser
           ];
 
-          shellHook = pre-commit-check.shellHook + '''';
+          shellHook = pre-commit-check.shellHook + "";
         };
       }
     );

@@ -1,0 +1,31 @@
+[live/prod/api] Initializing the backend...
+[live/prod/api] Initializing provider plugins...
+[live/prod/api] - Finding hashicorp/aws versions matching "~> 5.0"...
+[live/prod/api] - Installing hashicorp/aws v5.82.2...
+[live/prod/api] - Installed hashicorp/aws v5.82.2 (signed by HashiCorp)
+[live/prod/api] Terraform has been successfully initialized!
+[live/prod/db] Initializing the backend...
+[live/prod/db] Initializing provider plugins...
+[live/prod/db] - Finding hashicorp/aws versions matching "~> 5.0"...
+[live/prod/db] - Installing hashicorp/aws v5.82.2...
+[live/prod/db] - Installed hashicorp/aws v5.82.2 (signed by HashiCorp)
+[live/prod/db] Terraform has been successfully initialized!
+[live/prod/api] Terraform used the selected providers to generate the following execution plan.
+[live/prod/api] Resource actions are indicated with the following symbols:
+[live/prod/api]   + create
+[live/prod/api] Plan: 3 to add, 0 to change, 0 to destroy.
+[live/prod/db]
+[live/prod/db] │ Error: Invalid resource type
+[live/prod/db] │
+[live/prod/db] │   on main.tf line 42, in resource "aws_rds_clster" "main":
+[live/prod/db] │   42: resource "aws_rds_clster" "main" {
+[live/prod/db] │
+[live/prod/db] │ The provider hashicorp/aws does not support resource type "aws_rds_clster".
+[live/prod/db] │ Did you mean "aws_rds_cluster"?
+[live/prod/db] │
+[live/prod/db] │ Error: Missing required argument
+[live/prod/db] │
+[live/prod/db] │   on main.tf line 55, in resource "aws_db_instance" "replica":
+[live/prod/db] │   55: resource "aws_db_instance" "replica" {
+[live/prod/db] │
+[live/prod/db] │ "instance_class" is required, but no definition was found.
