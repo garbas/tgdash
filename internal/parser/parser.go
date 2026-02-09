@@ -1,5 +1,7 @@
 package parser
 
+import "strings"
+
 func ExtractUnitPrefix(
 	raw string,
 ) (unit string, line string) {
@@ -7,5 +9,8 @@ func ExtractUnitPrefix(
 	if m == nil {
 		return "", raw
 	}
-	return m[1], m[2]
+	unit = m[1]
+	// Strip .terragrunt-stack/ prefix from unit paths.
+	unit = strings.TrimPrefix(unit, ".terragrunt-stack/")
+	return unit, strings.TrimRight(m[2], " ")
 }

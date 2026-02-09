@@ -56,7 +56,7 @@ func (m Model) Update(
 
 	case reader.InputDoneMsg:
 		m.state.InputDone = true
-		return m, nil
+		return m, tea.Quit
 
 	case tea.WindowSizeMsg:
 		m.width = msg.Width

@@ -1,0 +1,64 @@
+23:47:13.722 INFO   Deleting stack directory: .terragrunt-stack
+23:47:15.253 INFO   Generating unit app-api from ./terragrunt.stack.hcl
+23:47:15.253 INFO   Generating unit app-web from ./terragrunt.stack.hcl
+23:47:15.253 INFO   Generating unit infra from ./terragrunt.stack.hcl
+23:47:15.253 INFO   Generating unit database from ./terragrunt.stack.hcl
+23:47:15.341 INFO   Generating unit app-api from ./terragrunt.stack.hcl
+23:47:15.341 INFO   Generating unit app-web from ./terragrunt.stack.hcl
+23:47:15.341 INFO   Generating unit infra from ./terragrunt.stack.hcl
+23:47:15.341 INFO   Generating unit database from ./terragrunt.stack.hcl
+23:47:15.490 INFO   [.terragrunt-stack/app-api] Downloading Terraform configurations from ../../units/app-api into ./.terragrunt-stack/app-api/.terragrunt-cache/abc123/def456
+23:47:15.490 INFO   [.terragrunt-stack/app-web] Downloading Terraform configurations from ../../units/app-web into ./.terragrunt-stack/app-web/.terragrunt-cache/ghi789/jkl012
+23:47:15.490 INFO   [.terragrunt-stack/infra] Downloading Terraform configurations from ../../units/infra into ./.terragrunt-stack/infra/.terragrunt-cache/mno345/pqr678
+23:47:15.490 INFO   [.terragrunt-stack/database] Downloading Terraform configurations from ../../units/database into ./.terragrunt-stack/database/.terragrunt-cache/stu901/vwx234
+23:47:15.520 STDOUT [.terragrunt-stack/app-api] terraform: Initializing the backend...
+23:47:15.520 STDOUT [.terragrunt-stack/infra] terraform: Initializing the backend...
+23:47:15.530 STDOUT [.terragrunt-stack/app-api] terraform:
+23:47:15.530 STDOUT [.terragrunt-stack/app-api] terraform: Successfully configured the backend "s3"! Terraform will automatically
+23:47:15.530 STDOUT [.terragrunt-stack/app-api] terraform: use this backend unless the backend configuration changes.
+23:47:15.540 STDOUT [.terragrunt-stack/infra] terraform:
+23:47:15.540 STDOUT [.terragrunt-stack/infra] terraform: Successfully configured the backend "s3"! Terraform will automatically
+23:47:15.540 STDOUT [.terragrunt-stack/infra] terraform: use this backend unless the backend configuration changes.
+23:47:16.100 STDOUT [.terragrunt-stack/app-web] terraform: Initializing the backend...
+23:47:16.200 STDOUT [.terragrunt-stack/database] terraform: Initializing the backend...
+23:47:16.300 STDOUT [.terragrunt-stack/app-web] terraform: Successfully configured the backend "s3"! Terraform will automatically
+23:47:16.300 STDOUT [.terragrunt-stack/app-web] terraform: use this backend unless the backend configuration changes.
+23:47:16.400 STDOUT [.terragrunt-stack/database] terraform: Successfully configured the backend "s3"! Terraform will automatically
+23:47:16.400 STDOUT [.terragrunt-stack/database] terraform: use this backend unless the backend configuration changes.
+23:47:17.000 STDOUT [.terragrunt-stack/app-api] terraform: Initializing provider plugins...
+23:47:17.100 STDOUT [.terragrunt-stack/app-api] terraform: - Finding hashicorp/aws versions matching "~> 5.0"...
+23:47:18.000 STDOUT [.terragrunt-stack/app-api] terraform: - Installing hashicorp/aws v5.82.2...
+23:47:19.000 STDOUT [.terragrunt-stack/app-api] terraform: - Installed hashicorp/aws v5.82.2 (signed by HashiCorp)
+23:47:19.100 STDOUT [.terragrunt-stack/infra] terraform: Initializing provider plugins...
+23:47:19.200 STDOUT [.terragrunt-stack/infra] terraform: - Finding hashicorp/aws versions matching "~> 5.0"...
+23:47:20.000 STDOUT [.terragrunt-stack/infra] terraform: - Installing hashicorp/aws v5.82.2...
+23:47:21.000 STDOUT [.terragrunt-stack/infra] terraform: - Installed hashicorp/aws v5.82.2 (signed by HashiCorp)
+23:47:21.100 STDOUT [.terragrunt-stack/app-web] terraform: Initializing provider plugins...
+23:47:21.200 STDOUT [.terragrunt-stack/app-web] terraform: - Finding hashicorp/aws versions matching "~> 5.0"...
+23:47:22.000 STDOUT [.terragrunt-stack/app-web] terraform: - Installing hashicorp/aws v5.82.2...
+23:47:23.000 STDOUT [.terragrunt-stack/app-web] terraform: - Installed hashicorp/aws v5.82.2 (signed by HashiCorp)
+23:47:23.100 STDOUT [.terragrunt-stack/database] terraform: Initializing provider plugins...
+23:47:23.200 STDOUT [.terragrunt-stack/database] terraform: - Finding hashicorp/aws versions matching "~> 5.0"...
+23:47:24.000 STDOUT [.terragrunt-stack/database] terraform: - Installing hashicorp/aws v5.82.2...
+23:47:25.000 STDOUT [.terragrunt-stack/database] terraform: - Installed hashicorp/aws v5.82.2 (signed by HashiCorp)
+23:47:26.000 STDOUT [.terragrunt-stack/app-api] terraform: Terraform has been successfully initialized!
+23:47:26.100 STDOUT [.terragrunt-stack/app-api] terraform: Terraform used the selected providers to generate the following execution plan.
+23:47:26.200 STDOUT [.terragrunt-stack/app-api] terraform: Resource actions are indicated with the following symbols:
+23:47:26.300 STDOUT [.terragrunt-stack/app-api] terraform:   + create
+23:47:26.400 STDOUT [.terragrunt-stack/app-api] terraform:   ~ update in-place
+23:47:26.500 STDOUT [.terragrunt-stack/app-api] terraform: Plan: 3 to add, 1 to change, 0 to destroy.
+23:47:27.000 STDOUT [.terragrunt-stack/infra] terraform: Terraform has been successfully initialized!
+23:47:27.100 STDOUT [.terragrunt-stack/infra] terraform: Terraform used the selected providers to generate the following execution plan.
+23:47:27.200 STDOUT [.terragrunt-stack/infra] terraform:   + create
+23:47:27.300 STDOUT [.terragrunt-stack/infra] terraform: Plan: 5 to add, 0 to change, 2 to destroy.
+23:47:28.000 STDOUT [.terragrunt-stack/app-web] terraform: Terraform has been successfully initialized!
+23:47:28.100 STDOUT [.terragrunt-stack/app-web] terraform: No changes. Your infrastructure matches the configuration.
+23:47:28.200 STDOUT [.terragrunt-stack/app-web] terraform: Plan: 0 to add, 0 to change, 0 to destroy.
+23:47:29.000 STDOUT [.terragrunt-stack/database] terraform: Terraform has been successfully initialized!
+23:47:29.100 STDOUT [.terragrunt-stack/database] terraform:
+23:47:29.200 STDOUT [.terragrunt-stack/database] terraform: │ Error: Missing required argument
+23:47:29.300 STDOUT [.terragrunt-stack/database] terraform: │
+23:47:29.400 STDOUT [.terragrunt-stack/database] terraform: │ The argument "name" is required, but no definition was found.
+23:47:29.500 STDOUT [.terragrunt-stack/database] terraform: │ Error: Invalid resource type
+23:47:29.600 STDOUT [.terragrunt-stack/database] terraform: │
+23:47:29.700 STDOUT [.terragrunt-stack/database] terraform: │ The provider does not support resource type "aws_rds_invalid".

@@ -6,8 +6,13 @@ import (
 )
 
 var (
+	// Matches both old format: [unit/path] content
+	// and new Terragrunt format:
+	// 23:47:15.520 STDOUT [.terragrunt-stack/unit] terraform: content
+	// Also handles tofu: prefix for OpenTofu users.
 	unitPrefixRe = regexp.MustCompile(
-		`^\[([^\]]+)\]\s*(.*)$`)
+		`^(?:\d{2}:\d{2}:\d{2}\.\d{3}\s+\w+\s+)?` +
+			`\[([^\]]+)\]\s*(?:(?:terraform|tofu):\s*)?(.*)$`)
 	planSummaryRe = regexp.MustCompile(
 		`Plan:\s+(\d+)\s+to add,\s+(\d+)\s+to change,\s+(\d+)\s+to destroy`)
 	applyResultRe = regexp.MustCompile(

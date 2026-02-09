@@ -30,6 +30,41 @@ func TestParseLineWithPrefix(t *testing.T) {
 			wantUnit: "unit-1",
 			wantLine: "",
 		},
+		// New Terragrunt format with timestamp + log level
+		{
+			input:    "23:47:15.520 STDOUT [.terragrunt-stack/sprinto] terraform: Initializing the backend...",
+			wantUnit: "sprinto",
+			wantLine: "Initializing the backend...",
+		},
+		{
+			input:    "23:47:15.490 INFO   [.terragrunt-stack/infra] Downloading Terraform configurations",
+			wantUnit: "infra",
+			wantLine: "Downloading Terraform configurations",
+		},
+		// Global INFO line (no brackets)
+		{
+			input:    "23:47:13.722 INFO   Deleting stack directory",
+			wantUnit: "",
+			wantLine: "23:47:13.722 INFO   Deleting stack directory",
+		},
+		// Timestamp + STDOUT with terraform: and plan summary
+		{
+			input:    "10:30:00.000 STDOUT [.terragrunt-stack/vpc] terraform: Plan: 2 to add, 1 to change, 0 to destroy.",
+			wantUnit: "vpc",
+			wantLine: "Plan: 2 to add, 1 to change, 0 to destroy.",
+		},
+		// Timestamp + unit without .terragrunt-stack prefix
+		{
+			input:    "10:30:00.000 STDOUT [my-unit] terraform: something",
+			wantUnit: "my-unit",
+			wantLine: "something",
+		},
+		// OpenTofu: tofu: prefix
+		{
+			input:    "10:30:00.000 STDOUT [.terragrunt-stack/vpc] tofu: Plan: 1 to add, 0 to change, 0 to destroy.",
+			wantUnit: "vpc",
+			wantLine: "Plan: 1 to add, 0 to change, 0 to destroy.",
+		},
 	}
 
 	for _, tt := range tests {
