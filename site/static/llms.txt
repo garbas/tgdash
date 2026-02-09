@@ -1,0 +1,57 @@
+# tgdash
+
+> Terminal dashboard for Terragrunt
+
+tgdash is a terminal UI (TUI) that parses streaming output
+from `terragrunt run --all` and displays a real-time
+dashboard with per-unit status, plan summaries, errors,
+and time estimates.
+
+## Links
+
+- Website: https://tgdash.garbas.si
+- Source: https://github.com/garbas/tgdash
+- Installation: https://tgdash.garbas.si/docs/installation/
+- Usage: https://tgdash.garbas.si/docs/usage/
+- Keybindings: https://tgdash.garbas.si/docs/keybindings/
+- Architecture: https://tgdash.garbas.si/docs/architecture/
+
+## Quick start
+
+```bash
+terragrunt run --all plan 2>&1 | tgdash
+```
+
+## Install
+
+```bash
+go install github.com/rok/tgdash@latest
+```
+
+Or with Nix:
+
+```bash
+nix run github:rok/tgdash
+```
+
+## Features
+
+- Real-time streaming of Terragrunt output
+- Per-unit status tracking (waiting, running, done, error)
+- Plan summary extraction (add/change/destroy)
+- Apply result detection
+- Error detection and filtering
+- Time estimates from run history
+- Dashboard and list views
+- Vim-style navigation (j/k/gg/G)
+- Search with /
+
+## Architecture
+
+stdin -> reader -> parser -> processor -> state -> TUI
+
+Built with Go and Bubble Tea (Charm).
+
+## License
+
+MIT

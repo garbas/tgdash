@@ -119,6 +119,12 @@ a:hover {
   background: rgba(152, 195, 121, 0.15);
 }
 
+.github-stars {
+  font-size: 0.75rem;
+  color: var(--yellow);
+  margin-left: 0.25rem;
+}
+
 /* Main body */
 .terminal-body {
   padding: 2rem 2rem;

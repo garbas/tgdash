@@ -6,28 +6,30 @@ enableRobotsTXT = true
 [params]
   description = "Terminal dashboard for Terragrunt"
   tagline = "Real-time TUI for terragrunt run --all"
+  githubRepo = "garbas/tgdash"
+  gaID = "G-JWELTXV5WF"
 
 [menu]
 
   [[menu.main]]
     name = "Home"
     url = "/"
-    weight = 0
-
-  [[menu.main]]
-    name = "Docs"
-    url = "/docs/"
     weight = 1
-
-  [[menu.main]]
-    name = "Installation"
-    url = "/docs/installation/"
-    weight = 2
 
   [[menu.main]]
     name = "Usage"
     url = "/docs/usage/"
+    weight = 2
+
+  [[menu.main]]
+    name = "Installation"
+    url = "/docs/installation/"
     weight = 3
+
+  [[menu.main]]
+    name = "Docs"
+    url = "/docs/"
+    weight = 4
 
   [[menu.main]]
     name = "GitHub"

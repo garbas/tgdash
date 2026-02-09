@@ -23,6 +23,10 @@ output works:
 terragrunt run --all validate 2>&1 | tgdash
 ```
 
+### Demo: basic plan output
+
+<img src="/demo/basic-usage.gif" alt="tgdash basic usage" class="demo-gif">
+
 ## What you see
 
 tgdash parses the streaming output and shows:
@@ -35,6 +39,16 @@ tgdash parses the streaming output and shows:
 - **Errors** - Detected errors highlighted and
   filterable
 - **Time estimates** - Based on historical run data
+
+## Navigation
+
+Navigate with vim-style keybindings: `j`/`k` to move
+between units, `Enter` to expand/collapse details,
+`G` to jump to bottom, `gg` to jump to top.
+
+### Demo: navigation and views
+
+<img src="/demo/navigation.gif" alt="tgdash navigation demo" class="demo-gif">
 
 ## Views
 
@@ -58,6 +72,10 @@ see overall progress at a glance.
 Press `e` to toggle error filtering. When active, only
 units with errors are shown, making it easy to find
 and diagnose failures in large runs.
+
+### Demo: error detection and filtering
+
+<img src="/demo/error-filtering.gif" alt="tgdash error filtering demo" class="demo-gif">
 
 ## Search
 

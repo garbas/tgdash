@@ -5,8 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ .Site.Title }}">
+  <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ .Site.Title }}">
+  <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <!-- Canonical -->
+  <link rel="canonical" href="{{ .Permalink }}">
+  <!-- LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="{{ "llms.txt" | absURL }}" title="LLM-friendly documentation">
   <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▪</text></svg>">
+  <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'><rect width='128' height='128' rx='16' fill='%230a0e14'/><text x='20' y='82' font-family='monospace' font-size='72' font-weight='bold' fill='%2398c379'>%3E_</text></svg>" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="{{ "favicon.svg" | relURL }}">
+  {{ with .Site.Params.gaID }}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ . }}');
+  </script>
+  {{ end }}
 </head>
 <body>
   <div class="terminal">
@@ -19,7 +44,13 @@
       </div>
       <nav class="terminal-nav">
         {{ range .Site.Menus.main }}
-          <a href="{{ .URL }}" class="nav-link{{ if $.IsMenuCurrent "main" . }} active{{ end }}">{{ .Name }}</a>
+          {{ if eq .Name "GitHub" }}
+            <a href="{{ .URL }}" class="nav-link github-link" target="_blank" rel="noopener">
+              {{ .Name }} <span class="github-stars" data-repo="{{ $.Site.Params.githubRepo }}"></span>
+            </a>
+          {{ else }}
+            <a href="{{ .URL }}" class="nav-link{{ if $.IsMenuCurrent "main" . }} active{{ end }}">{{ .Name }}</a>
+          {{ end }}
         {{ end }}
       </nav>
     </header>
@@ -30,5 +61,22 @@
       <span class="prompt">$</span> echo "MIT License &copy; {{ now.Year }}"
     </footer>
   </div>
+  {{ with .Site.Params.githubRepo }}
+  <script>
+    (function() {
+      var el = document.querySelector('.github-stars');
+      if (!el) return;
+      var repo = el.getAttribute('data-repo');
+      fetch('https://api.github.com/repos/' + repo)
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
+          if (d.stargazers_count !== undefined) {
+            el.textContent = '★ ' + d.stargazers_count;
+          }
+        })
+        .catch(function() {});
+    })();
+  </script>
+  {{ end }}
 </body>
 </html>
