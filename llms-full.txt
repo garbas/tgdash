@@ -1,0 +1,177 @@
+# tgdash - Complete Documentation for AI Assistants
+
+This file contains complete documentation for AI/LLM
+consumption.
+
+---
+
+# README
+
+A terminal dashboard for Terragrunt. Pipe the output of
+`terragrunt run --all` into `tgdash` and get a real-time
+TUI showing per-unit status, plan summaries, errors, and
+time estimates.
+
+## The Problem
+
+Running `terragrunt run --all plan` on a large
+infrastructure repo produces a wall of interleaved output
+from dozens of units. Finding which units failed, what
+changed, and how far along the run is requires scrolling
+through hundreds of lines.
+
+## Usage
+
+```bash
+terragrunt run --all plan 2>&1 | tgdash
+```
+
+```bash
+terragrunt run --all apply 2>&1 | tgdash
+```
+
+Any command that produces `[unit/path]`-prefixed output
+works:
+
+```bash
+terragrunt run --all validate 2>&1 | tgdash
+```
+
+## Features
+
+- Real-time streaming of Terragrunt output
+- Per-unit status tracking (waiting, running, done, error)
+- Plan summary extraction (resources to add/change/destroy)
+- Apply result detection
+- Error detection and filtering
+- Time estimates based on run history
+- Two views: dashboard (detail) and list (overview)
+- Vim-style navigation
+
+## Keybindings
+
+| Key        | Action           |
+| ---------- | ---------------- |
+| j / Down   | Move down        |
+| k / Up     | Move up          |
+| gg         | Jump to top      |
+| G          | Jump to bottom   |
+| Enter      | Expand/collapse  |
+| Tab        | Switch view      |
+| e          | Toggle errors    |
+| /          | Search           |
+| PgUp/PgDn  | Scroll output    |
+| q / Ctrl+C | Quit             |
+
+## Installation
+
+### From source
+
+```bash
+go install github.com/rok/tgdash@latest
+```
+
+### With Nix
+
+```bash
+nix run github:rok/tgdash
+```
+
+Or add to your flake inputs:
+
+```nix
+{
+  inputs.tgdash.url = "github:rok/tgdash";
+}
+```
+
+---
+
+# Development Guide (CLAUDE.md)
+
+Go CLI TUI for streaming Terragrunt output. Parses prefixed
+lines from `terragrunt run --all` and renders a Bubble Tea
+dashboard with per-unit status, plan summaries, and errors.
+
+## Environment
+
+Go is available only via Nix. All commands must run through:
+
+```bash
+nix develop /path/to/tgdash --command bash -c '...'
+```
+
+## Commands
+
+- Test: `go test ./... -v`
+- Build: `go build -o tgdash .`
+- Vet: `go vet ./...`
+
+## Pre-commit Hooks
+
+govet, gofmt, markdownlint, nixfmt, actionlint, yamllint,
+shellcheck, convco-check.
+
+Always fix linting problems. Never exclude or bypass hooks.
+
+## Commits
+
+Conventional commits enforced by `convco-check`.
+
+## Architecture
+
+```text
+stdin -> reader -> parser -> processor -> state -> Bubble Tea TUI
+```
+
+## File Structure
+
+- `main.go` - Entry point, wires reader + TUI
+- `internal/reader/` - Reads stdin lines, sends Bubble Tea
+  messages
+- `internal/parser/` - Regex extraction: unit prefix, plan
+  summary, apply result, errors
+- `internal/processor/` - Feeds parsed lines into AppState
+- `internal/state/` - AppState, Unit model, run history
+- `internal/estimator/` - Time estimates from run history
+- `internal/tui/` - Bubble Tea model, views, keybindings,
+  styles
+- `internal/integration/` - Integration tests with fixture
+  files
+
+## Integration Test Fixtures
+
+Test fixtures live in `internal/integration/testdata/*.txt`.
+Each file contains realistic Terragrunt output.
+
+To add an edge case from a bug report:
+
+1. Save output as `testdata/issue_NNN_description.txt`
+2. Add a table entry to `TestIntegrationPipeline`
+3. Run tests - failure means you have a reproduction
+
+## Worktrees
+
+Worktree location: `.worktrees/` (gitignored).
+
+---
+
+# Release Configuration
+
+Releases use GoReleaser. Cross-platform builds for Linux
+and macOS (amd64 + arm64). CGO disabled, binaries stripped.
+
+Changelog excludes docs, test, and chore commits.
+
+To create a release:
+
+```bash
+git tag v0.1.0
+git push --tags
+```
+
+---
+
+# License
+
+MIT License. Copyright (c) 2026 Rok Garbas.
