@@ -32,7 +32,7 @@ estimation.
 Run:
 
 ```bash
-cd /Users/rok/dev/tgdash && go mod init github.com/garbas/tgdash
+cd /path/to/tgdash && go mod init github.com/garbas/tgdash
 ```
 
 ### 1.2 Add dependencies
