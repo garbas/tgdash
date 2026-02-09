@@ -5,10 +5,10 @@ import (
 	"os"
 
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/rok/tgdash/internal/estimator"
-	"github.com/rok/tgdash/internal/reader"
-	"github.com/rok/tgdash/internal/state"
-	"github.com/rok/tgdash/internal/tui"
+	"github.com/garbas/tgdash/internal/estimator"
+	"github.com/garbas/tgdash/internal/reader"
+	"github.com/garbas/tgdash/internal/state"
+	"github.com/garbas/tgdash/internal/tui"
 	"golang.org/x/term"
 )
 

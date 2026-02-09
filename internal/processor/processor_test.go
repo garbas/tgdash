@@ -3,7 +3,7 @@ package processor
 import (
 	"testing"
 
-	"github.com/rok/tgdash/internal/state"
+	"github.com/garbas/tgdash/internal/state"
 )
 
 func TestProcessLineCreatesUnit(t *testing.T) {

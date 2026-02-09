@@ -4,7 +4,7 @@ import (
 	"sort"
 	"time"
 
-	"github.com/rok/tgdash/internal/state"
+	"github.com/garbas/tgdash/internal/state"
 )
 
 type Estimator struct {

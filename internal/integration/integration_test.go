@@ -7,8 +7,8 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/rok/tgdash/internal/processor"
-	"github.com/rok/tgdash/internal/state"
+	"github.com/garbas/tgdash/internal/processor"
+	"github.com/garbas/tgdash/internal/state"
 )
 
 func testdataDir() string {

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/rok/tgdash/internal/state"
+	"github.com/garbas/tgdash/internal/state"
 )
 
 type ListView struct {

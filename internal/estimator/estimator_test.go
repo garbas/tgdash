@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/rok/tgdash/internal/state"
+	"github.com/garbas/tgdash/internal/state"
 )
 
 func TestEstimateNoHistory(t *testing.T) {

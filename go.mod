@@ -1,4 +1,4 @@
-module github.com/rok/tgdash
+module github.com/garbas/tgdash
 
 go 1.25.5
 

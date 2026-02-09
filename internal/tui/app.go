@@ -6,10 +6,10 @@ import (
 	"github.com/charmbracelet/bubbles/key"
 	"github.com/charmbracelet/bubbles/viewport"
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/rok/tgdash/internal/estimator"
-	"github.com/rok/tgdash/internal/processor"
-	"github.com/rok/tgdash/internal/reader"
-	"github.com/rok/tgdash/internal/state"
+	"github.com/garbas/tgdash/internal/estimator"
+	"github.com/garbas/tgdash/internal/processor"
+	"github.com/garbas/tgdash/internal/reader"
+	"github.com/garbas/tgdash/internal/state"
 )
 
 type Model struct {

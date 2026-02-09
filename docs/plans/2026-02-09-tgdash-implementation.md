@@ -32,7 +32,7 @@ estimation.
 Run:
 
 ```bash
-cd /Users/rok/dev/tgdash && go mod init github.com/rok/tgdash
+cd /Users/rok/dev/tgdash && go mod init github.com/garbas/tgdash
 ```
 
 ### 1.2 Add dependencies
@@ -690,7 +690,7 @@ package processor
 import (
     "testing"
 
-    "github.com/rok/tgdash/internal/state"
+    "github.com/garbas/tgdash/internal/state"
 )
 
 func TestProcessLineCreatesUnit(t *testing.T) {
@@ -815,8 +815,8 @@ package processor
 import (
     "time"
 
-    "github.com/rok/tgdash/internal/parser"
-    "github.com/rok/tgdash/internal/state"
+    "github.com/garbas/tgdash/internal/parser"
+    "github.com/garbas/tgdash/internal/state"
 )
 
 const GlobalUnitPath = "(global)"
@@ -1118,7 +1118,7 @@ import (
     "testing"
     "time"
 
-    "github.com/rok/tgdash/internal/state"
+    "github.com/garbas/tgdash/internal/state"
 )
 
 func TestEstimateNoHistory(t *testing.T) {
@@ -1233,7 +1233,7 @@ import (
     "sort"
     "time"
 
-    "github.com/rok/tgdash/internal/state"
+    "github.com/garbas/tgdash/internal/state"
 )
 
 type Estimator struct {
@@ -1452,7 +1452,7 @@ import (
 
     "github.com/charmbracelet/bubbles/viewport"
     "github.com/charmbracelet/lipgloss"
-    "github.com/rok/tgdash/internal/state"
+    "github.com/garbas/tgdash/internal/state"
 )
 
 type DashboardView struct {
@@ -1621,7 +1621,7 @@ import (
     "strings"
 
     "github.com/charmbracelet/lipgloss"
-    "github.com/rok/tgdash/internal/state"
+    "github.com/garbas/tgdash/internal/state"
 )
 
 type ListView struct {
@@ -1755,10 +1755,10 @@ import (
     "github.com/charmbracelet/bubbles/key"
     "github.com/charmbracelet/bubbles/viewport"
     tea "github.com/charmbracelet/bubbletea"
-    "github.com/rok/tgdash/internal/estimator"
-    "github.com/rok/tgdash/internal/processor"
-    "github.com/rok/tgdash/internal/reader"
-    "github.com/rok/tgdash/internal/state"
+    "github.com/garbas/tgdash/internal/estimator"
+    "github.com/garbas/tgdash/internal/processor"
+    "github.com/garbas/tgdash/internal/reader"
+    "github.com/garbas/tgdash/internal/state"
 )
 
 type Model struct {
@@ -1970,10 +1970,10 @@ import (
     "os"
 
     tea "github.com/charmbracelet/bubbletea"
-    "github.com/rok/tgdash/internal/estimator"
-    "github.com/rok/tgdash/internal/reader"
-    "github.com/rok/tgdash/internal/state"
-    "github.com/rok/tgdash/internal/tui"
+    "github.com/garbas/tgdash/internal/estimator"
+    "github.com/garbas/tgdash/internal/reader"
+    "github.com/garbas/tgdash/internal/state"
+    "github.com/garbas/tgdash/internal/tui"
     "golang.org/x/term"
 )
 

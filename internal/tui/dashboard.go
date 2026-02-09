@@ -6,7 +6,7 @@ import (
 
 	"github.com/charmbracelet/bubbles/viewport"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/rok/tgdash/internal/state"
+	"github.com/garbas/tgdash/internal/state"
 )
 
 type DashboardView struct {

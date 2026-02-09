@@ -3,8 +3,8 @@ package processor
 import (
 	"time"
 
-	"github.com/rok/tgdash/internal/parser"
-	"github.com/rok/tgdash/internal/state"
+	"github.com/garbas/tgdash/internal/parser"
+	"github.com/garbas/tgdash/internal/state"
 )
 
 const GlobalUnitPath = "(global)"
