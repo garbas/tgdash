@@ -9,7 +9,7 @@ weight: 1
 If you have Go installed:
 
 ```bash
-go install github.com/rok/tgdash@latest
+go install github.com/garbas/tgdash@latest
 ```
 
 ## With Nix
@@ -17,14 +17,14 @@ go install github.com/rok/tgdash@latest
 Run directly without installing:
 
 ```bash
-nix run github:rok/tgdash
+nix run github:garbas/tgdash
 ```
 
 Or add to your flake inputs:
 
 ```nix
 {
-  inputs.tgdash.url = "github:rok/tgdash";
+  inputs.tgdash.url = "github:garbas/tgdash";
 }
 ```
 

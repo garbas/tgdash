@@ -25,13 +25,13 @@ terragrunt run --all plan 2>&1 | tgdash
 ## Install
 
 ```bash
-go install github.com/rok/tgdash@latest
+go install github.com/garbas/tgdash@latest
 ```
 
 Or with Nix:
 
 ```bash
-nix run github:rok/tgdash
+nix run github:garbas/tgdash
 ```
 
 ## Features

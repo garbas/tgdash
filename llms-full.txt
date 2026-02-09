@@ -70,20 +70,20 @@ terragrunt run --all validate 2>&1 | tgdash
 ### From source
 
 ```bash
-go install github.com/rok/tgdash@latest
+go install github.com/garbas/tgdash@latest
 ```
 
 ### With Nix
 
 ```bash
-nix run github:rok/tgdash
+nix run github:garbas/tgdash
 ```
 
 Or add to your flake inputs:
 
 ```nix
 {
-  inputs.tgdash.url = "github:rok/tgdash";
+  inputs.tgdash.url = "github:garbas/tgdash";
 }
 ```
 

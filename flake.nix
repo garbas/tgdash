@@ -65,7 +65,7 @@
 
           meta = {
             description = "Terminal dashboard for Terragrunt";
-            homepage = "https://github.com/rok/tgdash";
+            homepage = "https://github.com/garbas/tgdash";
             license = pkgs.lib.licenses.mit;
             mainProgram = "tgdash";
           };
