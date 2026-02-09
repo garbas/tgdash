@@ -29,6 +29,8 @@
                 "^blog/"
               ];
             };
+            govet.enable = true;
+            gofmt.enable = true;
             actionlint.enable = true;
             yamllint.enable = true;
             shellcheck = {
