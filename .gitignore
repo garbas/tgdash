@@ -1,4 +1,5 @@
 tgdash
 result
 .worktrees/
+.direnv/
 site/public/
