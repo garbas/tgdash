@@ -19,28 +19,27 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
 
+        commonHooks = {
+          nixfmt-rfc-style.enable = true;
+          markdownlint = {
+            enable = true;
+            excludes = [
+              "^blog/"
+            ];
+          };
+          gofmt.enable = true;
+          actionlint.enable = true;
+          yamllint.enable = true;
+          shellcheck = {
+            enable = true;
+            excludes = [ "^\\.envrc$" ];
+          };
+        };
+
         pre-commit-check = pre-commit-hooks.lib.${system}.run {
           src = ./.;
-          hooks = {
-            nixfmt-rfc-style.enable = true;
-            markdownlint = {
-              enable = true;
-              excludes = [
-                "^blog/"
-              ];
-            };
-            govet = {
-              enable = true;
-              entry = "${pkgs.bash}/bin/bash -c 'GOTOOLCHAIN=local ${pkgs.lib.getExe pkgs.go} vet ./...'";
-              pass_filenames = false;
-            };
-            gofmt.enable = true;
-            actionlint.enable = true;
-            yamllint.enable = true;
-            shellcheck = {
-              enable = true;
-              excludes = [ "^\\.envrc$" ];
-            };
+          hooks = commonHooks // {
+            govet.enable = true;
             convco-check = {
               enable = true;
               name = "convco-check";
@@ -51,6 +50,11 @@
               stages = [ "commit-msg" ];
             };
           };
+        };
+
+        ci-check = pre-commit-hooks.lib.${system}.run {
+          src = ./.;
+          hooks = commonHooks;
         };
         tgdash = pkgs.buildGoModule {
           pname = "tgdash";
@@ -68,7 +72,7 @@
       in
       {
         checks = {
-          pre-commit = pre-commit-check;
+          pre-commit = ci-check;
         };
 
         packages = {
