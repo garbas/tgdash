@@ -9,7 +9,7 @@ dashboard with per-unit status, plan summaries, and errors.
 Go is available only via Nix. All commands must run through:
 
 ```bash
-nix develop /Users/rok/dev/tgdash --command bash -c '...'
+nix develop --command bash -c '...'
 ```
 
 ## Commands
