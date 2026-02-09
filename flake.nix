@@ -25,6 +25,7 @@
             enable = true;
             excludes = [
               "^blog/"
+              "^site/"
             ];
           };
           gofmt.enable = true;
@@ -84,6 +85,8 @@
           packages = with pkgs; [
             go
             goreleaser
+            hugo
+            vhs
           ];
 
           shellHook = pre-commit-check.shellHook + "";

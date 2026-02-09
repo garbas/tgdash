@@ -1,0 +1,79 @@
+{{ define "main" }}
+<div class="hero">
+  <pre class="logo" aria-label="tgdash logo">
+ _            _           _
+| |_ __ _  __| | __ _ ___| |__
+| __/ _` |/ _` |/ _` / __| '_ \
+| || (_| | (_| | (_| \__ \ | | |
+ \__\__, |\__,_|\__,_|___/_| |_|
+    |___/
+  </pre>
+  <p class="tagline">{{ .Site.Params.tagline }}</p>
+  <div class="hero-install">
+    <span class="prompt">$</span> <span class="cmd">terragrunt run --all plan 2>&1</span> <span class="pipe">|</span> <span class="cmd-highlight">tgdash</span>
+  </div>
+</div>
+
+<div class="demo-section">
+  <h2><span class="prompt">$</span> cat demo.gif</h2>
+  <img src="/demo/basic-usage.gif" alt="tgdash basic usage demo" class="demo-gif">
+</div>
+
+<div class="features">
+  <h2><span class="prompt">$</span> ls features/</h2>
+  <div class="feature-grid">
+    <div class="feature">
+      <div class="feature-icon">&#9608;</div>
+      <h3>Real-time Dashboard</h3>
+      <p>Watch units progress through init, plan, and apply
+        in a clean terminal UI.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">&#9888;</div>
+      <h3>Error Detection</h3>
+      <p>Errors are caught and highlighted. Filter to see
+        only failed units with one keypress.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">&#9776;</div>
+      <h3>Plan Summaries</h3>
+      <p>See resources to add, change, and destroy at a
+        glance for every unit.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">&#9201;</div>
+      <h3>Time Estimates</h3>
+      <p>Historical run data powers per-unit time estimates
+        so you know when it will finish.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">&#9000;</div>
+      <h3>Vim Navigation</h3>
+      <p>Navigate with j/k, search with /, expand with
+        Enter. Feels like home.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">&#9707;</div>
+      <h3>Two Views</h3>
+      <p>Dashboard view for detail, list view for overview.
+        Switch with Tab.</p>
+    </div>
+  </div>
+</div>
+
+<div class="install-section">
+  <h2><span class="prompt">$</span> cat INSTALL</h2>
+  <div class="install-options">
+    <div class="install-option">
+      <h3>From source</h3>
+      <pre><code>go install github.com/rok/tgdash@latest</code></pre>
+    </div>
+    <div class="install-option">
+      <h3>With Nix</h3>
+      <pre><code>nix run github:rok/tgdash</code></pre>
+    </div>
+  </div>
+</div>
+
+{{ .Content }}
+{{ end }}

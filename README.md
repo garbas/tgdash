@@ -1,5 +1,7 @@
 # tgdash
 
+**[tgdash.garbas.si](https://tgdash.garbas.si)**
+
 A terminal dashboard for Terragrunt. Pipe the output of
 `terragrunt run --all` into `tgdash` and get a real-time
 TUI showing per-unit status, plan summaries, errors, and

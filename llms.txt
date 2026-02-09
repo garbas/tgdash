@@ -1,5 +1,7 @@
 # tgdash
 
+> <https://tgdash.garbas.si>
+
 > Terminal dashboard for Terragrunt. Pipe output from
 > `terragrunt run --all` and get real-time per-unit
 > status, plan summaries, errors, and time estimates.
