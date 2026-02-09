@@ -10,6 +10,11 @@ enableRobotsTXT = true
 [menu]
 
   [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 0
+
+  [[menu.main]]
     name = "Docs"
     url = "/docs/"
     weight = 1
