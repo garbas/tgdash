@@ -31,7 +31,7 @@ Or add to your flake inputs:
 ## From release binaries
 
 Download pre-built binaries from the
-[GitHub releases](https://github.com/rok/tgdash/releases)
+[GitHub releases](https://github.com/garbas/tgdash/releases)
 page. Binaries are available for Linux and macOS
 (amd64 + arm64).
 

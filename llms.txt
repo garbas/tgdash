@@ -8,10 +8,10 @@
 
 ## Documentation
 
-- [README](https://github.com/rok/tgdash/blob/main/README.md): Usage, installation, keybindings, architecture
-- [CLAUDE.md](https://github.com/rok/tgdash/blob/main/CLAUDE.md): Project conventions and development guide
-- [LICENSE](https://github.com/rok/tgdash/blob/main/LICENSE): MIT license
+- [README](https://github.com/garbas/tgdash/blob/main/README.md): Usage, installation, keybindings, architecture
+- [CLAUDE.md](https://github.com/garbas/tgdash/blob/main/CLAUDE.md): Project conventions and development guide
+- [LICENSE](https://github.com/garbas/tgdash/blob/main/LICENSE): MIT license
 
 ## Optional
 
-- [Full documentation for LLMs](https://github.com/rok/tgdash/blob/main/llms-full.txt): Complete project documentation in one file
+- [Full documentation for LLMs](https://github.com/garbas/tgdash/blob/main/llms-full.txt): Complete project documentation in one file
