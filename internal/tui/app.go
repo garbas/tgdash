@@ -15,16 +15,17 @@ import (
 type autoQuitMsg struct{}
 
 type Model struct {
-	state     *state.AppState
-	proc      *processor.Processor
-	estimator *estimator.Estimator
-	dashboard DashboardView
-	list      ListView
-	keys      KeyMap
-	width     int
-	height    int
-	gPending  bool
-	estimates map[string]string
+	state          *state.AppState
+	proc           *processor.Processor
+	estimator      *estimator.Estimator
+	dashboard      DashboardView
+	list           ListView
+	keys           KeyMap
+	width          int
+	height         int
+	gPending       bool
+	userInteracted bool
+	estimates      map[string]string
 }
 
 func NewModel(
@@ -64,6 +65,9 @@ func (m Model) Update(
 			})
 
 	case autoQuitMsg:
+		if m.userInteracted {
+			return m, nil
+		}
 		return m, tea.Quit
 
 	case tea.WindowSizeMsg:
@@ -74,6 +78,7 @@ func (m Model) Update(
 		return m, nil
 
 	case tea.KeyMsg:
+		m.userInteracted = true
 		return m.handleKey(msg)
 	}
 

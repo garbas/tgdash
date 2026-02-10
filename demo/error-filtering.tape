@@ -22,17 +22,23 @@ Enter
 Sleep 500ms
 Show
 
-# Use the fixture with errors
-Type "cat internal/integration/testdata/plan_with_errors.txt | /tmp/tgdash"
+# Use the fixture with errors (database unit has errors)
+Type "cat internal/integration/testdata/terragrunt_new_format.txt | /tmp/tgdash"
 Sleep 1s
 Enter
 
 # Let dashboard render with errors visible
 Sleep 3s
 
-# Navigate to see the error
+# Navigate to the database unit (has errors)
 Type "j"
 Sleep 500ms
+Type "j"
+Sleep 500ms
+Type "j"
+Sleep 500ms
+Type "j"
+Sleep 1s
 
 # Toggle error filter with e
 Type "e"

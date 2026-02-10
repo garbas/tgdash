@@ -23,7 +23,7 @@ Enter
 Sleep 500ms
 Show
 
-Type "cat internal/integration/testdata/multi_unit_apply.txt | /tmp/tgdash"
+Type "cat internal/integration/testdata/terragrunt_new_format.txt | /tmp/tgdash"
 Sleep 1s
 Enter
 
@@ -43,14 +43,6 @@ Type "k"
 Sleep 500ms
 Type "k"
 Sleep 500ms
-
-# Expand a unit with Enter
-Enter
-Sleep 1s
-
-# Collapse it
-Enter
-Sleep 1s
 
 # Switch to list view with Tab
 Type "	"

@@ -24,7 +24,7 @@ Sleep 500ms
 Show
 
 # Show the command we're about to run
-Type "cat internal/integration/testdata/basic_plan.txt | /tmp/tgdash"
+Type "cat internal/integration/testdata/terragrunt_new_format.txt | /tmp/tgdash"
 Sleep 1s
 Enter
 
