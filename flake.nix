@@ -30,7 +30,18 @@
           };
           gofmt.enable = true;
           actionlint.enable = true;
-          yamllint.enable = true;
+          yamllint = {
+            enable = true;
+            settings.configuration = ''
+              ---
+              extends: default
+              rules:
+                line-length:
+                  max: 120
+                comments:
+                  min-spaces-from-content: 1
+            '';
+          };
           shellcheck = {
             enable = true;
             excludes = [ "^\\.envrc$" ];
