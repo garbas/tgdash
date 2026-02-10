@@ -12,6 +12,8 @@ import (
 	"github.com/garbas/tgdash/internal/state"
 )
 
+type autoQuitMsg struct{}
+
 type Model struct {
 	state     *state.AppState
 	proc      *processor.Processor
@@ -56,6 +58,12 @@ func (m Model) Update(
 
 	case reader.InputDoneMsg:
 		m.state.InputDone = true
+		return m, tea.Tick(
+			3*time.Second, func(time.Time) tea.Msg {
+				return autoQuitMsg{}
+			})
+
+	case autoQuitMsg:
 		return m, tea.Quit
 
 	case tea.WindowSizeMsg:
