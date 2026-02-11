@@ -101,7 +101,7 @@ func (d *DashboardView) Render(
 	parts := []string{table, sep, d.viewport.View()}
 	if appState.InputDone {
 		parts = append(parts, HelpStyle.Render(
-			"Run complete. Navigate with j/k, press q to exit."))
+			"Run complete. ↑/↓ units, j/k scroll, q quit."))
 	}
 	return lipgloss.JoinVertical(lipgloss.Left, parts...)
 }

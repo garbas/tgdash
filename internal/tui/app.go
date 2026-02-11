@@ -108,6 +108,12 @@ func (m Model) handleKey(
 			m.updateViewport()
 		}
 
+	case key.Matches(msg, m.keys.ScrollDown):
+		m.dashboard.viewport.LineDown(1)
+
+	case key.Matches(msg, m.keys.ScrollUp):
+		m.dashboard.viewport.LineUp(1)
+
 	case key.Matches(msg, m.keys.Top):
 		if m.gPending {
 			m.state.SelectedIdx = 0

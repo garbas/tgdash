@@ -3,28 +3,38 @@ package tui
 import "github.com/charmbracelet/bubbles/key"
 
 type KeyMap struct {
-	Up       key.Binding
-	Down     key.Binding
-	Top      key.Binding
-	Bottom   key.Binding
-	Enter    key.Binding
-	Tab      key.Binding
-	Errors   key.Binding
-	Search   key.Binding
-	Quit     key.Binding
-	PageUp   key.Binding
-	PageDown key.Binding
+	Up         key.Binding
+	Down       key.Binding
+	ScrollUp   key.Binding
+	ScrollDown key.Binding
+	Top        key.Binding
+	Bottom     key.Binding
+	Enter      key.Binding
+	Tab        key.Binding
+	Errors     key.Binding
+	Search     key.Binding
+	Quit       key.Binding
+	PageUp     key.Binding
+	PageDown   key.Binding
 }
 
 func DefaultKeyMap() KeyMap {
 	return KeyMap{
 		Up: key.NewBinding(
-			key.WithKeys("k", "up"),
-			key.WithHelp("\u2191/k", "up"),
+			key.WithKeys("up"),
+			key.WithHelp("↑", "prev unit"),
 		),
 		Down: key.NewBinding(
-			key.WithKeys("j", "down"),
-			key.WithHelp("\u2193/j", "down"),
+			key.WithKeys("down"),
+			key.WithHelp("↓", "next unit"),
+		),
+		ScrollUp: key.NewBinding(
+			key.WithKeys("k"),
+			key.WithHelp("k", "scroll up"),
+		),
+		ScrollDown: key.NewBinding(
+			key.WithKeys("j"),
+			key.WithHelp("j", "scroll down"),
 		),
 		Top: key.NewBinding(
 			key.WithKeys("g"),
