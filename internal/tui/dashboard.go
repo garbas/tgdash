@@ -52,7 +52,7 @@ func (d *DashboardView) Render(
 
 	// Column widths
 	const (
-		colStatus = 8
+		colStatus = 10
 		colUnit   = 30
 		colAdd    = 4
 		colChg    = 4
