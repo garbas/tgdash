@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"regexp"
 	"strings"
+	"unicode/utf8"
 
 	"github.com/charmbracelet/bubbles/viewport"
 	"github.com/charmbracelet/lipgloss"
@@ -231,5 +232,6 @@ func padRight(s string, width int) string {
 var ansiRe = regexp.MustCompile(`\x1b\[[0-9;]*m`)
 
 func visibleLen(s string) int {
-	return len(ansiRe.ReplaceAllString(s, ""))
+	return utf8.RuneCountInString(
+		ansiRe.ReplaceAllString(s, ""))
 }
