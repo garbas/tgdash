@@ -2,6 +2,7 @@ package tui
 
 import (
 	"fmt"
+	"regexp"
 	"strings"
 
 	"github.com/charmbracelet/bubbles/viewport"
@@ -48,11 +49,25 @@ func (d *DashboardView) Render(
 ) string {
 	units := appState.Units()
 
+	// Column widths
+	const (
+		colStatus = 8
+		colUnit   = 30
+		colAdd    = 4
+		colChg    = 4
+		colDel    = 4
+		colTime   = 10
+	)
+	sep := " │ "
+
 	// Render table
 	var tableRows []string
-	header := fmt.Sprintf(
-		"  %-8s %-30s %4s %4s %4s  %s",
-		"STATUS", "UNIT", "+", "~", "-", "TIME")
+	header := padRight("STATUS", colStatus) + sep +
+		padRight("UNIT", colUnit) + sep +
+		padRight("+", colAdd) + sep +
+		padRight("~", colChg) + sep +
+		padRight("-", colDel) + sep +
+		padRight("TIME", colTime)
 	tableRows = append(tableRows,
 		TitleStyle.Width(d.width-2).Render(header))
 
@@ -85,10 +100,13 @@ func (d *DashboardView) Render(
 			timeStr = formatTime(u, estimates)
 		}
 
-		line := fmt.Sprintf(
-			"  %-8s %-30s %4s %4s %4s  %s",
-			status, truncate(u.Path, 30),
-			add, chg, del, timeStr)
+		line := padRight(status, colStatus) + sep +
+			padRight(truncate(u.Path, colUnit),
+				colUnit) + sep +
+			padRight(add, colAdd) + sep +
+			padRight(chg, colChg) + sep +
+			padRight(del, colDel) + sep +
+			padRight(timeStr, colTime)
 
 		if selected {
 			line = SelectedStyle.Width(d.width - 2).
@@ -108,12 +126,12 @@ func (d *DashboardView) Render(
 	if appState.SelectedIdx < len(units) {
 		selectedName = units[appState.SelectedIdx].Path
 	}
-	sep := HelpStyle.Render(
+	divider := HelpStyle.Render(
 		fmt.Sprintf("─── %s ", selectedName) +
 			strings.Repeat("─",
 				max(0, d.width-len(selectedName)-6)))
 
-	parts := []string{table, sep, d.viewport.View()}
+	parts := []string{table, divider, d.viewport.View()}
 	if appState.InputDone {
 		parts = append(parts, HelpStyle.Render(
 			"Run complete. ↑/↓ units, j/k scroll, q quit."))
@@ -197,4 +215,20 @@ func truncate(s string, maxLen int) string {
 		return s
 	}
 	return s[:maxLen-3] + "..."
+}
+
+// padRight pads s to width based on visible length
+// (ignoring ANSI escape sequences).
+func padRight(s string, width int) string {
+	visible := visibleLen(s)
+	if visible >= width {
+		return s
+	}
+	return s + strings.Repeat(" ", width-visible)
+}
+
+var ansiRe = regexp.MustCompile(`\x1b\[[0-9;]*m`)
+
+func visibleLen(s string) int {
+	return len(ansiRe.ReplaceAllString(s, ""))
 }
