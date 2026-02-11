@@ -98,8 +98,12 @@ func (d *DashboardView) Render(
 			strings.Repeat("─",
 				max(0, d.width-len(selectedName)-6)))
 
-	return lipgloss.JoinVertical(lipgloss.Left,
-		table, sep, d.viewport.View())
+	parts := []string{table, sep, d.viewport.View()}
+	if appState.InputDone {
+		parts = append(parts, HelpStyle.Render(
+			"Run complete. Navigate with j/k, press q to exit."))
+	}
+	return lipgloss.JoinVertical(lipgloss.Left, parts...)
 }
 
 func formatStatus(s state.UnitStatus) string {
