@@ -9,6 +9,7 @@ const (
 	StatusRunning UnitStatus = "running"
 	StatusDone    UnitStatus = "done"
 	StatusError   UnitStatus = "error"
+	StatusSkipped UnitStatus = "skipped"
 )
 
 const MaxOutputLines = 10000

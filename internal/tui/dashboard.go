@@ -112,6 +112,8 @@ func formatStatus(s state.UnitStatus) string {
 		return StatusDone.Render("✓ done")
 	case state.StatusError:
 		return StatusError.Render("✗ err")
+	case state.StatusSkipped:
+		return StatusSkipped.Render("⊘ skip")
 	}
 	return string(s)
 }

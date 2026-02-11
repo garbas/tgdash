@@ -1,0 +1,42 @@
+[0;90m23:47:13.722[0m [0;36mINFO[0m   Deleting stack directory: .terragrunt-stack
+[0;90m23:47:15.253[0m [0;36mINFO[0m   Generating unit app-api from ./terragrunt.stack.hcl
+[0;90m23:47:15.253[0m [0;36mINFO[0m   Generating unit app-web from ./terragrunt.stack.hcl
+[0;90m23:47:15.253[0m [0;36mINFO[0m   Generating unit infra from ./terragrunt.stack.hcl
+[0;90m23:47:15.253[0m [0;36mINFO[0m   Generating unit database from ./terragrunt.stack.hcl
+[0;90m23:47:15.490[0m [0;36mINFO[0m   [0;1m[.terragrunt-stack/app-api][0m Downloading Terraform configurations
+[0;90m23:47:15.490[0m [0;36mINFO[0m   [0;1m[.terragrunt-stack/app-web][0m Downloading Terraform configurations
+[0;90m23:47:15.490[0m [0;36mINFO[0m   [0;1m[.terragrunt-stack/infra][0m Downloading Terraform configurations
+[0;90m23:47:15.490[0m [0;36mINFO[0m   [0;1m[.terragrunt-stack/database][0m Downloading Terraform configurations
+[0;90m23:47:15.520[0m [0;36mSTDOUT[0m [.terragrunt-stack/app-api] [0;36mterraform:[0m Initializing the backend...
+[0;90m23:47:15.520[0m [0;36mSTDOUT[0m [.terragrunt-stack/infra] [0;36mterraform:[0m Initializing the backend...
+[0;90m23:47:15.530[0m [0;36mSTDOUT[0m [.terragrunt-stack/app-api] [0;36mterraform:[0m
+[0;90m23:47:15.530[0m [0;36mSTDOUT[0m [.terragrunt-stack/app-api] [0;36mterraform:[0m Successfully configured the backend "s3"!
+[0;90m23:47:16.100[0m [0;36mSTDOUT[0m [.terragrunt-stack/app-web] [0;36mterraform:[0m Initializing the backend...
+[0;90m23:47:16.200[0m [0;36mSTDOUT[0m [.terragrunt-stack/database] [0;36mterraform:[0m Initializing the backend...
+[0;90m23:47:16.300[0m [0;36mSTDOUT[0m [.terragrunt-stack/app-web] [0;36mterraform:[0m Successfully configured the backend "s3"!
+[0;90m23:47:16.400[0m [0;36mSTDOUT[0m [.terragrunt-stack/database] [0;36mterraform:[0m Successfully configured the backend "s3"!
+[0;90m23:47:17.000[0m [0;36mSTDOUT[0m [.terragrunt-stack/app-api] [0;36mterraform:[0m Initializing provider plugins...
+[0;90m23:47:17.100[0m [0;36mSTDOUT[0m [.terragrunt-stack/app-api] [0;36mterraform:[0m - Finding hashicorp/aws versions matching "~> 5.0"...
+[0;90m23:47:18.000[0m [0;36mSTDOUT[0m [.terragrunt-stack/app-api] [0;36mterraform:[0m - Installing hashicorp/aws v5.82.2...
+[0;90m23:47:19.000[0m [0;36mSTDOUT[0m [.terragrunt-stack/app-api] [0;36mterraform:[0m - Installed hashicorp/aws v5.82.2 (signed by HashiCorp)
+[0;90m23:47:26.000[0m [0;36mSTDOUT[0m [.terragrunt-stack/app-api] [0;36mterraform:[0m Terraform has been successfully initialized!
+[0;90m23:47:26.100[0m [0;36mSTDOUT[0m [.terragrunt-stack/app-api] [0;36mterraform:[0m Terraform used the selected providers to generate the following execution plan.
+[0;90m23:47:26.200[0m [0;36mSTDOUT[0m [.terragrunt-stack/app-api] [0;36mterraform:[0m Resource actions are indicated with the following symbols:
+[0;90m23:47:26.300[0m [0;36mSTDOUT[0m [.terragrunt-stack/app-api] [0;36mterraform:[0m   + create
+[0;90m23:47:26.400[0m [0;36mSTDOUT[0m [.terragrunt-stack/app-api] [0;36mterraform:[0m   ~ update in-place
+[0;90m23:47:26.500[0m [0;36mSTDOUT[0m [.terragrunt-stack/app-api] [0;36mterraform:[0m Plan: 3 to add, 1 to change, 0 to destroy.
+[0;90m23:47:27.000[0m [0;36mSTDOUT[0m [.terragrunt-stack/infra] [0;36mterraform:[0m Terraform has been successfully initialized!
+[0;90m23:47:27.100[0m [0;36mSTDOUT[0m [.terragrunt-stack/infra] [0;36mterraform:[0m Terraform used the selected providers to generate the following execution plan.
+[0;90m23:47:27.200[0m [0;36mSTDOUT[0m [.terragrunt-stack/infra] [0;36mterraform:[0m   + create
+[0;90m23:47:27.300[0m [0;36mSTDOUT[0m [.terragrunt-stack/infra] [0;36mterraform:[0m Plan: 5 to add, 0 to change, 2 to destroy.
+[0;90m23:47:28.000[0m [0;36mSTDOUT[0m [.terragrunt-stack/app-web] [0;36mterraform:[0m Terraform has been successfully initialized!
+[0;90m23:47:28.100[0m [0;36mSTDOUT[0m [.terragrunt-stack/app-web] [0;36mterraform:[0m No changes. Your infrastructure matches the configuration.
+[0;90m23:47:29.000[0m [0;36mSTDOUT[0m [.terragrunt-stack/database] [0;36mterraform:[0m Terraform has been successfully initialized!
+[0;90m23:47:29.100[0m [0;36mSTDOUT[0m [.terragrunt-stack/database] [0;36mterraform:[0m
+[0;90m23:47:29.200[0m [0;36mSTDOUT[0m [.terragrunt-stack/database] [0;36mterraform:[0m │ Error: Missing required argument
+[0;90m23:47:29.300[0m [0;36mSTDOUT[0m [.terragrunt-stack/database] [0;36mterraform:[0m │
+[0;90m23:47:29.400[0m [0;36mSTDOUT[0m [.terragrunt-stack/database] [0;36mterraform:[0m │ The argument "name" is required, but no definition was found.
+[0;90m23:47:29.500[0m [0;36mSTDOUT[0m [.terragrunt-stack/database] [0;36mterraform:[0m │ Error: Invalid resource type
+[0;90m23:47:29.600[0m [0;36mSTDOUT[0m [.terragrunt-stack/database] [0;36mterraform:[0m │
+[0;90m23:47:29.700[0m [0;36mSTDOUT[0m [.terragrunt-stack/database] [0;36mterraform:[0m │ The provider does not support resource type "aws_rds_invalid".
+* unit ./.terragrunt-stack/web-ui did not run due to early exit

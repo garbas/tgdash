@@ -19,6 +19,10 @@ var (
 		`Apply complete!\s+Resources:\s+(\d+)\s+added,\s+(\d+)\s+changed,\s+(\d+)\s+destroyed`)
 	errorRe = regexp.MustCompile(
 		`(?:^|\s*[│\|]\s*)Error:\s+`)
+	noChangesRe = regexp.MustCompile(
+		`No changes\.\s+Your infrastructure matches`)
+	didNotRunRe = regexp.MustCompile(
+		`\*\s+unit\s+\./\.terragrunt-stack/(\S+)\s+did not run`)
 )
 
 type Summary struct {
@@ -54,4 +58,18 @@ func DetectApplyResult(line string) (Summary, bool) {
 
 func DetectError(line string) bool {
 	return errorRe.MatchString(line)
+}
+
+func DetectNoChanges(line string) bool {
+	return noChangesRe.MatchString(line)
+}
+
+// DetectDidNotRun checks for "did not run due to early exit"
+// messages and returns the unit name if found.
+func DetectDidNotRun(line string) (string, bool) {
+	m := didNotRunRe.FindStringSubmatch(line)
+	if m == nil {
+		return "", false
+	}
+	return m[1], true
 }

@@ -13,6 +13,8 @@ var (
 	StatusError = lipgloss.NewStyle().
 			Foreground(lipgloss.Color("196")).
 			Bold(true)
+	StatusSkipped = lipgloss.NewStyle().
+			Foreground(lipgloss.Color("214"))
 
 	TitleStyle = lipgloss.NewStyle().
 			Bold(true).

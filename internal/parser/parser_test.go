@@ -157,6 +157,68 @@ func TestDetectApplyResult(t *testing.T) {
 	}
 }
 
+func TestDetectNoChanges(t *testing.T) {
+	tests := []struct {
+		line string
+		want bool
+	}{
+		{
+			"No changes. Your infrastructure matches the configuration.",
+			true,
+		},
+		{
+			"No changes.  Your infrastructure matches the config.",
+			true,
+		},
+		{"Plan: 0 to add, 0 to change, 0 to destroy.", false},
+		{"Some other line", false},
+	}
+
+	for _, tt := range tests {
+		got := DetectNoChanges(tt.line)
+		if got != tt.want {
+			t.Errorf("DetectNoChanges(%q) = %v, want %v",
+				tt.line, got, tt.want)
+		}
+	}
+}
+
+func TestDetectDidNotRun(t *testing.T) {
+	tests := []struct {
+		line     string
+		wantUnit string
+		wantOk   bool
+	}{
+		{
+			"* unit ./.terragrunt-stack/web-ui did not run due to early exit",
+			"web-ui",
+			true,
+		},
+		{
+			"* unit ./.terragrunt-stack/api did not run due to early exit",
+			"api",
+			true,
+		},
+		{"Some other line", "", false},
+		{"[vpc] Initializing...", "", false},
+	}
+
+	for _, tt := range tests {
+		unit, ok := DetectDidNotRun(tt.line)
+		if ok != tt.wantOk {
+			t.Errorf(
+				"DetectDidNotRun(%q) ok = %v, want %v",
+				tt.line, ok, tt.wantOk)
+			continue
+		}
+		if unit != tt.wantUnit {
+			t.Errorf(
+				"DetectDidNotRun(%q) unit = %q, want %q",
+				tt.line, unit, tt.wantUnit)
+		}
+	}
+}
+
 func TestDetectError(t *testing.T) {
 	tests := []struct {
 		line string

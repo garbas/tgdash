@@ -19,6 +19,17 @@ func New(s *state.AppState) *Processor {
 }
 
 func (p *Processor) ProcessLine(raw string) {
+	raw = parser.StripANSI(raw)
+
+	// Detect "did not run" before normal parsing — these
+	// are global lines that reference a specific unit.
+	if skippedUnit, ok := parser.DetectDidNotRun(raw); ok {
+		u := p.state.GetOrCreateUnit(skippedUnit)
+		u.Status = state.StatusSkipped
+		u.AppendLine(raw)
+		return
+	}
+
 	unitPath, line := parser.ExtractUnitPrefix(raw)
 
 	if unitPath == "" {
@@ -33,6 +44,16 @@ func (p *Processor) ProcessLine(raw string) {
 
 	u := p.state.GetOrCreateUnit(unitPath)
 	u.AppendLine(line)
+
+	// Detect "No changes" (before plan summary, as both
+	// can appear on separate lines)
+	if parser.DetectNoChanges(line) {
+		u.PlanSummary = &state.PlanSummary{}
+		u.Status = state.StatusDone
+		if !u.StartTime.IsZero() {
+			u.Duration = time.Since(u.StartTime)
+		}
+	}
 
 	// Detect plan summary
 	if summary, ok := parser.DetectPlanSummary(line); ok {
