@@ -52,7 +52,7 @@ changelog:
 
 release:
   github:
-    owner: "rok"
+    owner: "garbas"
     name: "tgdash"
   draft: false
   prerelease: "auto"
