@@ -70,7 +70,7 @@
         };
         tgdash = pkgs.buildGoModule {
           pname = "tgdash";
-          version = "0.1.0";
+          version = "1.0.0";
           src = ./.;
           vendorHash = "sha256-TZa7C8KbBRZaD921T4sNVaqgHiRwCHDGdeaG7O9qeLg=";
 
