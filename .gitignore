@@ -2,4 +2,5 @@ tgdash
 result
 .worktrees/
 .direnv/
+.mcp.json
 site/public/
