@@ -74,7 +74,7 @@ func (d *DashboardView) Render(
 	for i, u := range units {
 		selected := i == appState.SelectedIdx
 		var status string
-		add, chg, del := "-", "-", "-"
+		add, chg, del := "/", "/", "/"
 		var timeStr string
 		if selected {
 			status = formatStatusPlain(u.Status)
@@ -100,7 +100,8 @@ func (d *DashboardView) Render(
 			timeStr = formatTime(u, estimates)
 		}
 
-		line := padRight(status, colStatus) + sep +
+		line := " " +
+			padRight(status, colStatus) + sep +
 			padRight(truncate(u.Path, colUnit),
 				colUnit) + sep +
 			padRight(add, colAdd) + sep +
@@ -188,7 +189,7 @@ func formatTime(
 		}
 		return elapsed
 	}
-	return "-"
+	return "/"
 }
 
 func formatTimePlain(
@@ -207,7 +208,7 @@ func formatTimePlain(
 		}
 		return elapsed
 	}
-	return "-"
+	return "/"
 }
 
 func truncate(s string, maxLen int) string {
