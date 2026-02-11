@@ -131,7 +131,7 @@ a:hover {
   align-items: center;
   gap: 0.5rem;
   color: var(--fg-dim);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   padding: 0.3rem 0.75rem;
   border: 1px solid var(--border);
   border-radius: 6px;
@@ -139,6 +139,7 @@ a:hover {
   transition: all 0.15s;
   text-decoration: none;
   white-space: nowrap;
+  margin-left: auto;
 }
 
 .github-badge:hover {
@@ -156,23 +157,17 @@ a:hover {
   font-weight: 600;
 }
 
-.github-meta {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--fg-dim);
-  font-size: 0.75rem;
-}
-
 .github-version {
   color: var(--green);
 }
 
-.github-stars {
+.github-star-icon {
   color: var(--yellow);
+  font-size: 1.1rem;
+  line-height: 1;
 }
 
-.github-forks {
+.github-star-count {
   color: var(--fg-dim);
 }
 
