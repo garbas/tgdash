@@ -16,48 +16,7 @@
 
 <div class="demo-section">
   <h2><span class="prompt">$</span> cat demo.gif</h2>
-  <div class="demo-gallery">
-    <img src="/demo/basic-usage.gif"
-      alt="tgdash basic usage demo"
-      class="demo-gif demo-featured"
-      data-label="Basic usage"
-      onclick="featureDemo(this)">
-    <div class="demo-thumbs">
-      <div class="demo-thumb" onclick="featureDemo(this.querySelector('img'))">
-        <img src="/demo/navigation.gif"
-          alt="tgdash navigation demo"
-          class="demo-gif"
-          data-label="Navigation">
-        <span class="demo-label">Navigation</span>
-      </div>
-      <div class="demo-thumb" onclick="featureDemo(this.querySelector('img'))">
-        <img src="/demo/error-filtering.gif"
-          alt="tgdash error filtering demo"
-          class="demo-gif"
-          data-label="Error filtering">
-        <span class="demo-label">Error filtering</span>
-      </div>
-    </div>
-  </div>
-  <script>
-    function featureDemo(img) {
-      var gallery = document.querySelector('.demo-gallery');
-      var featured = gallery.querySelector('.demo-featured');
-      if (img === featured) return;
-      var thumbs = gallery.querySelector('.demo-thumbs');
-      var oldSrc = featured.src;
-      var oldAlt = featured.alt;
-      var oldLabel = featured.dataset.label;
-      featured.src = img.src;
-      featured.alt = img.alt;
-      featured.dataset.label = img.dataset.label;
-      img.src = oldSrc;
-      img.alt = oldAlt;
-      img.dataset.label = oldLabel;
-      var label = img.closest('.demo-thumb').querySelector('.demo-label');
-      if (label) label.textContent = oldLabel;
-    }
-  </script>
+  <img src="/demo/demo.gif" alt="tgdash demo" class="demo-gif">
 </div>
 
 <div class="features">

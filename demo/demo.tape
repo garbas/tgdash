@@ -1,8 +1,8 @@
-# navigation.tape - Show keybindings and view switching
-# Demonstrates: arrow keys for unit navigation, j/k for
-# viewport scrolling, Tab to switch views
+# demo.tape - Full tgdash demo
+# Covers: exec mode, dashboard view, navigation, scrolling,
+# list view, error filtering
 
-Output site/static/demo/navigation.gif
+Output site/static/demo/demo.gif
 
 Set Shell bash
 Set FontSize 14
@@ -11,7 +11,7 @@ Set Height 600
 Set Theme "Catppuccin Mocha"
 Set TypingSpeed 50ms
 
-# Build and set clean prompt
+# Build tgdash and set clean prompt
 Hide
 Type `export PS1="$ "`
 Enter
@@ -23,14 +23,15 @@ Enter
 Sleep 500ms
 Show
 
-Type "cat internal/integration/testdata/terragrunt_new_format.txt | /tmp/tgdash"
+# Launch with exec mode
+Type "/tmp/tgdash -- cat internal/integration/testdata/terragrunt_new_format.txt"
 Sleep 1s
 Enter
 
-# Let it render
-Sleep 3s
+# Watch the dashboard render and units progress
+Sleep 5s
 
-# Navigate down between units with arrow keys
+# Navigate down through units
 Down
 Sleep 500ms
 Down
@@ -38,7 +39,7 @@ Sleep 500ms
 Down
 Sleep 500ms
 
-# Navigate back up with arrow keys
+# Navigate back up
 Up
 Sleep 500ms
 Up
@@ -52,7 +53,7 @@ Sleep 500ms
 Type "k"
 Sleep 500ms
 
-# Switch to list view with Tab
+# Switch to list view
 Type "	"
 Sleep 2s
 
@@ -66,6 +67,14 @@ Sleep 1s
 
 # Jump to top with gg
 Type "gg"
+Sleep 1s
+
+# Toggle error filter
+Type "e"
+Sleep 2s
+
+# Toggle back
+Type "e"
 Sleep 2s
 
 # Exit

@@ -1,5 +1,3 @@
-# Record all demo GIFs
+# Record demo GIF
 demo:
-    vhs demo/basic-usage.tape
-    vhs demo/navigation.tape
-    vhs demo/error-filtering.tape
+    vhs demo/demo.tape

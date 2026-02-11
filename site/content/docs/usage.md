@@ -32,9 +32,9 @@ tgdash -- terragrunt run --all apply
 tgdash -- terragrunt run --all validate
 ```
 
-### Demo: basic plan output
+### Demo
 
-<img src="/demo/basic-usage.gif" alt="tgdash basic usage" class="demo-gif">
+<img src="/demo/demo.gif" alt="tgdash demo" class="demo-gif">
 
 ## What you see
 
@@ -54,10 +54,6 @@ tgdash parses the streaming output and shows:
 Navigate with vim-style keybindings: `j`/`k` to move
 between units, `Enter` to expand/collapse details,
 `G` to jump to bottom, `gg` to jump to top.
-
-### Demo: navigation and views
-
-<img src="/demo/navigation.gif" alt="tgdash navigation demo" class="demo-gif">
 
 ## Views
 
@@ -81,10 +77,6 @@ see overall progress at a glance.
 Press `e` to toggle error filtering. When active, only
 units with errors are shown, making it easy to find
 and diagnose failures in large runs.
-
-### Demo: error detection and filtering
-
-<img src="/demo/error-filtering.gif" alt="tgdash error filtering demo" class="demo-gif">
 
 ## Search
 

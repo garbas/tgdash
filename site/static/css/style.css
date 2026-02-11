@@ -195,54 +195,6 @@ a:hover {
   margin: 3rem 0;
 }
 
-.demo-gallery {
-  margin-top: 1rem;
-}
-
-.demo-featured {
-  width: 100%;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  cursor: default;
-}
-
-.demo-thumbs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.demo-thumb {
-  cursor: pointer;
-  position: relative;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  overflow: hidden;
-  transition: border-color 0.15s;
-}
-
-.demo-thumb:hover {
-  border-color: var(--green);
-}
-
-.demo-thumb img {
-  width: 100%;
-  display: block;
-  border: none;
-  border-radius: 0;
-  margin: 0;
-}
-
-.demo-label {
-  display: block;
-  text-align: center;
-  padding: 0.4rem;
-  font-size: 0.8rem;
-  color: var(--fg-dim);
-  background: var(--bg);
-}
-
 .demo-gif {
   width: 100%;
   border: 1px solid var(--border);
