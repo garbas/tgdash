@@ -17,19 +17,24 @@ through hundreds of lines.
 
 ## Usage
 
-```bash
-terragrunt run --all plan 2>&1 | tgdash
-```
+Run a command directly:
 
 ```bash
-terragrunt run --all apply 2>&1 | tgdash
+tgdash -- terragrunt run --all plan
+```
+
+Or pipe output into tgdash:
+
+```bash
+terragrunt run --all plan 2>&1 | tgdash
 ```
 
 Any command that produces `[unit/path]`-prefixed output
 works:
 
 ```bash
-terragrunt run --all validate 2>&1 | tgdash
+tgdash -- terragrunt run --all apply
+tgdash -- terragrunt run --all validate
 ```
 
 ## Features
@@ -88,6 +93,7 @@ stdin -> reader -> parser -> processor -> state -> TUI
 
 | Package | Role |
 | ------------ | ---------------------------------- |
+| `runner` | Spawns commands in exec mode |
 | `reader` | Reads stdin, emits Bubble Tea msgs |
 | `parser` | Regex: prefix, plan, apply, errors |
 | `processor` | Routes parsed lines into AppState |

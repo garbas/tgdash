@@ -4,23 +4,32 @@ description: "How to use tgdash"
 weight: 2
 ---
 
-## Basic usage
+## Exec mode
 
-Pipe any Terragrunt command into tgdash:
+Run a command directly with `--`:
+
+```bash
+tgdash -- terragrunt run --all plan
+```
+
+tgdash spawns the command, captures its output, and
+renders the dashboard. This is the recommended way
+to use tgdash.
+
+## Pipe mode
+
+Alternatively, pipe any Terragrunt command into tgdash:
 
 ```bash
 terragrunt run --all plan 2>&1 | tgdash
 ```
 
-```bash
-terragrunt run --all apply 2>&1 | tgdash
-```
-
 Any command that produces `[unit/path]`-prefixed
-output works:
+output works with either mode:
 
 ```bash
-terragrunt run --all validate 2>&1 | tgdash
+tgdash -- terragrunt run --all apply
+tgdash -- terragrunt run --all validate
 ```
 
 ### Demo: basic plan output

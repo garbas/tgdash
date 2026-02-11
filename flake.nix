@@ -103,6 +103,7 @@
             go
             goreleaser
             hugo
+            just
             vhs
           ];
 

@@ -16,6 +16,7 @@ stdin -> reader -> parser -> processor -> state -> TUI
 
 | Package | Role |
 | ------------ | ---------------------------------- |
+| `runner` | Spawns commands in exec mode |
 | `reader` | Reads stdin, emits Bubble Tea msgs |
 | `parser` | Regex: prefix, plan, apply, errors |
 | `processor` | Routes parsed lines into AppState |
@@ -26,11 +27,20 @@ stdin -> reader -> parser -> processor -> state -> TUI
 
 ## How it works
 
+### Runner
+
+In exec mode (`tgdash -- command`), the runner spawns
+the child process and provides its output as a reader.
+It also detects the Terragrunt command (plan, apply,
+etc.) from the arguments.
+
 ### Reader
 
-The reader goroutine reads lines from stdin and sends
-them as Bubble Tea messages to the TUI. This allows
-the TUI to remain responsive while processing input.
+The reader goroutine reads lines from the input source
+(stdin in pipe mode, or the child process in exec
+mode) and sends them as Bubble Tea messages to the
+TUI. This allows the TUI to remain responsive while
+processing input.
 
 ### Parser
 
