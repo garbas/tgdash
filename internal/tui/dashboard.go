@@ -57,25 +57,40 @@ func (d *DashboardView) Render(
 		TitleStyle.Width(d.width-2).Render(header))
 
 	for i, u := range units {
-		status := formatStatus(u.Status)
+		selected := i == appState.SelectedIdx
+		var status string
 		add, chg, del := "-", "-", "-"
-		if u.PlanSummary != nil {
-			add = AddStyle.Render(
-				fmt.Sprintf("%d", u.PlanSummary.Add))
-			chg = ChangeStyle.Render(
-				fmt.Sprintf("%d", u.PlanSummary.Change))
-			del = DestroyStyle.Render(
-				fmt.Sprintf("%d", u.PlanSummary.Destroy))
+		var timeStr string
+		if selected {
+			status = formatStatusPlain(u.Status)
+			if u.PlanSummary != nil {
+				add = fmt.Sprintf(
+					"%d", u.PlanSummary.Add)
+				chg = fmt.Sprintf(
+					"%d", u.PlanSummary.Change)
+				del = fmt.Sprintf(
+					"%d", u.PlanSummary.Destroy)
+			}
+			timeStr = formatTimePlain(u, estimates)
+		} else {
+			status = formatStatus(u.Status)
+			if u.PlanSummary != nil {
+				add = AddStyle.Render(fmt.Sprintf(
+					"%d", u.PlanSummary.Add))
+				chg = ChangeStyle.Render(fmt.Sprintf(
+					"%d", u.PlanSummary.Change))
+				del = DestroyStyle.Render(fmt.Sprintf(
+					"%d", u.PlanSummary.Destroy))
+			}
+			timeStr = formatTime(u, estimates)
 		}
-
-		timeStr := formatTime(u, estimates)
 
 		line := fmt.Sprintf(
 			"  %-8s %-30s %4s %4s %4s  %s",
 			status, truncate(u.Path, 30),
 			add, chg, del, timeStr)
 
-		if i == appState.SelectedIdx {
+		if selected {
 			line = SelectedStyle.Width(d.width - 2).
 				Render(line)
 		}
@@ -122,6 +137,22 @@ func formatStatus(s state.UnitStatus) string {
 	return string(s)
 }
 
+func formatStatusPlain(s state.UnitStatus) string {
+	switch s {
+	case state.StatusWaiting:
+		return "○ wait"
+	case state.StatusRunning:
+		return "● run"
+	case state.StatusDone:
+		return "✓ done"
+	case state.StatusError:
+		return "✗ err"
+	case state.StatusSkipped:
+		return "⊘ skip"
+	}
+	return string(s)
+}
+
 func formatTime(
 	u *state.Unit,
 	estimates map[string]string,
@@ -136,6 +167,25 @@ func formatTime(
 		if est, ok := estimates[u.Path]; ok {
 			return elapsed + " / " +
 				EstimateStyle.Render(est)
+		}
+		return elapsed
+	}
+	return "-"
+}
+
+func formatTimePlain(
+	u *state.Unit,
+	estimates map[string]string,
+) string {
+	if u.Duration > 0 {
+		return fmt.Sprintf("%ds",
+			int(u.Duration.Seconds()))
+	}
+	if u.Status == state.StatusRunning {
+		elapsed := fmt.Sprintf("%ds",
+			int(u.Duration.Seconds()))
+		if est, ok := estimates[u.Path]; ok {
+			return elapsed + " / " + est
 		}
 		return elapsed
 	}

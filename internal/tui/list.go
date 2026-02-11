@@ -45,25 +45,36 @@ func (l *ListView) Render(
 			arrow = "▼"
 		}
 
-		status := formatStatus(u.Status)
-		summary := ""
-		if u.PlanSummary != nil {
-			summary = fmt.Sprintf(" %s%s%s",
-				AddStyle.Render(
-					fmt.Sprintf("+%d", u.PlanSummary.Add)),
-				ChangeStyle.Render(
-					fmt.Sprintf(" ~%d", u.PlanSummary.Change)),
-				DestroyStyle.Render(
-					fmt.Sprintf(" -%d", u.PlanSummary.Destroy)),
-			)
+		selected := i == appState.SelectedIdx
+		var status, summary, timeStr string
+		if selected {
+			status = formatStatusPlain(u.Status)
+			if u.PlanSummary != nil {
+				summary = fmt.Sprintf(
+					" +%d ~%d -%d",
+					u.PlanSummary.Add,
+					u.PlanSummary.Change,
+					u.PlanSummary.Destroy)
+			}
+			timeStr = formatTimePlain(u, estimates)
+		} else {
+			status = formatStatus(u.Status)
+			if u.PlanSummary != nil {
+				summary = fmt.Sprintf(" %s%s%s",
+					AddStyle.Render(fmt.Sprintf(
+						"+%d", u.PlanSummary.Add)),
+					ChangeStyle.Render(fmt.Sprintf(
+						" ~%d", u.PlanSummary.Change)),
+					DestroyStyle.Render(fmt.Sprintf(
+						" -%d", u.PlanSummary.Destroy)))
+			}
+			timeStr = formatTime(u, estimates)
 		}
-
-		timeStr := formatTime(u, estimates)
 
 		header := fmt.Sprintf("%s %s [%s]%s  %s",
 			arrow, u.Path, status, summary, timeStr)
 
-		if i == appState.SelectedIdx {
+		if selected {
 			header = SelectedStyle.
 				Width(l.width - 2).Render(header)
 		}
