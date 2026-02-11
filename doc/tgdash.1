@@ -1,0 +1,136 @@
+.TH TGDASH 1 "2026-02-11" "tgdash" "User Commands"
+.SH NAME
+tgdash \- terminal dashboard for Terragrunt
+.SH SYNOPSIS
+.B tgdash
+.RB \-\- " command" " [args...]"
+.br
+.I command
+.RB "2>&1 |"
+.B tgdash
+.SH DESCRIPTION
+.B tgdash
+is a terminal dashboard that parses the prefixed output of
+.BR "terragrunt run \-\-all"
+and renders a real-time TUI showing per-unit status, plan summaries,
+errors, and time estimates.
+.PP
+It supports two usage modes:
+.TP
+.B Exec mode
+Run a command directly:
+.BR "tgdash \-\- terragrunt run \-\-all plan" .
+tgdash spawns the command and reads its output.
+.TP
+.B Pipe mode
+Pipe output into tgdash:
+.BR "terragrunt run \-\-all plan 2>&1 | tgdash" .
+tgdash reads from standard input.
+.PP
+Any command that produces
+.BI [ unit/path ]
+prefixed output works with tgdash.
+.PP
+While the command is still running, each unit displays a status
+indicator showing its current state.
+A
+.B \(bu running
+label marks units that are currently executing.
+When all units finish and the input stream closes, a
+.B "Run complete."
+message appears at the bottom of the screen.
+.SH KEYBINDINGS
+.SS Navigation
+.TS
+l l.
+j / Down	Move down
+k / Up	Move up
+gg	Jump to top
+G	Jump to bottom
+PgUp/PgDn	Scroll output
+.TE
+.SS Actions
+.TS
+l l.
+Enter	Expand/collapse unit
+Tab	Switch view
+e	Toggle error filter
+/	Search units by path
+q / Ctrl+C	Quit
+.TE
+.PP
+tgdash uses vim-style keybindings.
+The
+.B gg
+binding requires pressing
+.B g
+twice in quick succession.
+.SH VIEWS
+.TP
+.B Dashboard view
+The default view.
+Shows each unit with full detail including status, plan summary,
+output lines, and timing information.
+.TP
+.B List view
+A compact table showing all units at a glance.
+Good for large repos with many units where you want to see overall
+progress quickly.
+Press
+.B Tab
+to switch between views.
+.SH UNIT STATUS
+Each unit displays one of the following status indicators:
+.TS
+l l.
+\(ci wait	Waiting to start
+\(bu running	Currently executing
+\(OK done	Completed successfully
+\(mu err	Completed with errors
+\(es skip	Skipped
+.TE
+.SH FILES
+.TP
+.I ~/.tgdash/history.json
+Run history used for time estimates.
+tgdash records the duration of each unit after every run and uses
+past data to estimate remaining time on subsequent runs.
+.SH EXIT STATUS
+.TP
+.B 0
+Successful execution.
+.TP
+.B 1
+Error starting the command (exec mode) or TUI error.
+.SH EXAMPLES
+Run a Terragrunt plan with the dashboard:
+.PP
+.RS
+.nf
+tgdash \-\- terragrunt run \-\-all plan
+.fi
+.RE
+.PP
+Pipe apply output into tgdash:
+.PP
+.RS
+.nf
+terragrunt run \-\-all apply 2>&1 | tgdash
+.fi
+.RE
+.PP
+Validate all units:
+.PP
+.RS
+.nf
+tgdash \-\- terragrunt run \-\-all validate
+.fi
+.RE
+.SH AUTHORS
+Rok Garbas and contributors.
+.SH BUGS
+Report bugs at
+.UR https://github.com/garbas/tgdash/issues
+.UE .
+.SH SEE ALSO
+.BR terragrunt (1)

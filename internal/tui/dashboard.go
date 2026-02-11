@@ -146,7 +146,7 @@ func formatStatus(s state.UnitStatus) string {
 	case state.StatusWaiting:
 		return StatusWaiting.Render("○ wait")
 	case state.StatusRunning:
-		return StatusRunning.Render("● run")
+		return StatusRunning.Render("● running")
 	case state.StatusDone:
 		return StatusDone.Render("✓ done")
 	case state.StatusError:
@@ -162,7 +162,7 @@ func formatStatusPlain(s state.UnitStatus) string {
 	case state.StatusWaiting:
 		return "○ wait"
 	case state.StatusRunning:
-		return "● run"
+		return "● running"
 	case state.StatusDone:
 		return "✓ done"
 	case state.StatusError:

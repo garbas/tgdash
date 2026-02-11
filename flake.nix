@@ -74,6 +74,12 @@
           src = ./.;
           vendorHash = "sha256-TZa7C8KbBRZaD921T4sNVaqgHiRwCHDGdeaG7O9qeLg=";
 
+          nativeBuildInputs = [ pkgs.installShellFiles ];
+
+          postInstall = ''
+            installManPage doc/tgdash.1
+          '';
+
           meta = {
             description = "Terminal dashboard for Terragrunt";
             homepage = "https://github.com/garbas/tgdash";
