@@ -1,6 +1,6 @@
-# navigation.tape - Show vim keybindings and view switching
-# Demonstrates: j/k navigation, Tab to switch views,
-# Enter to expand/collapse
+# navigation.tape - Show keybindings and view switching
+# Demonstrates: arrow keys for unit navigation, j/k for
+# viewport scrolling, Tab to switch views
 
 Output site/static/demo/navigation.gif
 
@@ -30,16 +30,24 @@ Enter
 # Let it render
 Sleep 3s
 
-# Navigate down with j
-Type "j"
+# Navigate down between units with arrow keys
+Down
 Sleep 500ms
-Type "j"
+Down
 Sleep 500ms
-Type "j"
+Down
 Sleep 500ms
 
-# Navigate back up with k
-Type "k"
+# Navigate back up with arrow keys
+Up
+Sleep 500ms
+Up
+Sleep 500ms
+
+# Scroll the output viewport with j/k
+Type "j"
+Sleep 500ms
+Type "j"
 Sleep 500ms
 Type "k"
 Sleep 500ms
@@ -59,3 +67,6 @@ Sleep 1s
 # Jump to top with gg
 Type "gg"
 Sleep 2s
+
+# Exit
+Type "q"

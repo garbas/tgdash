@@ -2,20 +2,53 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"os"
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/garbas/tgdash/internal/estimator"
 	"github.com/garbas/tgdash/internal/reader"
+	"github.com/garbas/tgdash/internal/runner"
 	"github.com/garbas/tgdash/internal/state"
 	"github.com/garbas/tgdash/internal/tui"
 	"golang.org/x/term"
 )
 
 func main() {
-	if term.IsTerminal(int(os.Stdin.Fd())) {
+	var (
+		input   io.Reader
+		cleanup func()
+		command string
+	)
+
+	args := os.Args[1:]
+
+	switch {
+	case len(args) > 0:
+		// Exec mode: tgdash -- terragrunt run --all plan
+		var err error
+		input, cleanup, err = runner.Run(args)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+			os.Exit(1)
+		}
+		defer cleanup()
+		command = runner.DetectCommand(args)
+
+	case !term.IsTerminal(int(os.Stdin.Fd())):
+		// Pipe mode: terragrunt run --all 2>&1 | tgdash
+		input = os.Stdin
+		command = "plan"
+
+	default:
 		fmt.Fprintln(os.Stderr,
-			"Usage: terragrunt run --all plan 2>&1 | tgdash")
+			"Usage:\n"+
+				"  tgdash -- <command>\n"+
+				"  <command> 2>&1 | tgdash\n"+
+				"\n"+
+				"Examples:\n"+
+				"  tgdash -- terragrunt run --all plan\n"+
+				"  terragrunt run --all plan 2>&1 | tgdash")
 		os.Exit(1)
 	}
 
@@ -31,7 +64,7 @@ func main() {
 		tea.WithMouseCellMotion(),
 	)
 
-	go reader.ReadLines(os.Stdin,
+	go reader.ReadLines(input,
 		func(msg tea.Msg) { p.Send(msg) })
 
 	if _, err := p.Run(); err != nil {
@@ -41,7 +74,7 @@ func main() {
 
 	// Save history after TUI exits
 	run := state.RunRecord{
-		Command: "plan",
+		Command: command,
 	}
 	for _, u := range appState.Units() {
 		run.Units = append(run.Units, state.UnitRecord{

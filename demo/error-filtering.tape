@@ -31,13 +31,13 @@ Enter
 Sleep 3s
 
 # Navigate to the database unit (has errors)
-Type "j"
+Down
 Sleep 500ms
-Type "j"
+Down
 Sleep 500ms
-Type "j"
+Down
 Sleep 500ms
-Type "j"
+Down
 Sleep 1s
 
 # Toggle error filter with e
@@ -50,3 +50,6 @@ Sleep 2s
 # Toggle back to see all units
 Type "e"
 Sleep 2s
+
+# Exit
+Type "q"

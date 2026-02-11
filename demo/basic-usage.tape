@@ -24,12 +24,15 @@ Sleep 500ms
 Show
 
 # Show the command we're about to run
-Type "cat internal/integration/testdata/terragrunt_new_format.txt | /tmp/tgdash"
+Type "/tmp/tgdash -- cat internal/integration/testdata/terragrunt_new_format.txt"
 Sleep 1s
 Enter
 
 # Let the dashboard render and process
 Sleep 5s
 
-# Screenshot the final state
+# Show the "run complete" help bar
 Sleep 2s
+
+# Exit
+Type "q"
