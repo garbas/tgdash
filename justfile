@@ -4,4 +4,5 @@ demo:
 
 # Build the site
 site:
+    rm -rf site/public
     cd site && hugo
