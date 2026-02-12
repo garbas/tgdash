@@ -42,11 +42,24 @@ snapshot:
 
 changelog:
   sort: "asc"
+  groups:
+    - title: "Features"
+      regexp: '^feat(\(.+\))?:'
+      order: 0
+    - title: "Bug Fixes"
+      regexp: '^fix(\(.+\))?:'
+      order: 1
+    - title: "Refactoring"
+      regexp: '^refactor(\(.+\))?:'
+      order: 2
+    - title: "Other"
+      order: 999
   filters:
     exclude:
       - "^docs:"
       - "^test:"
       - "^chore:"
+      - "^ci:"
       - "Merge pull request"
       - "Merge branch"
 
