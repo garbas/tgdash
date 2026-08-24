@@ -3,7 +3,7 @@ module github.com/garbas/tgdash
 go 1.25.5
 
 require (
-	github.com/charmbracelet/bubbles v0.21.1
+	github.com/charmbracelet/bubbles/v2 v2.2.1
 	github.com/charmbracelet/bubbletea v1.3.10
 	github.com/charmbracelet/lipgloss v1.1.0
 	golang.org/x/term v0.39.0
